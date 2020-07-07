@@ -1,0 +1,29 @@
+
+	<%= form_for(@post) do |f| %>
+		 <div class="field row">
+		    <span>タイトル</span>
+		    <%= f.text_field :title , class: "form-control", placeholder: "ゲーミングPC、ハイエンドPC..." %>
+		</div>
+		<div class="field row">
+		    <span>CPU</span>
+		    <%= f.text_field :cpu_name , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="field row">
+		    <span>CPU</span>
+		    <%= f.text_field :cpu_name , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="field row">
+		    <span>CPU</span>
+		    <%= f.text_field :cpu_name , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="field row">
+		    <span>CPU</span>
+		    <%= f.text_field :cpu_name , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="actions row">
+		    <input type="submit" name="commit" value="投稿する" class="btn btn-primary col-xs-12">
+		</div>
+	<% end %>
+
+
+:cpu_name, :cooler_name, :motherboard_name, :memory_name, :gpu_name, :storage_name, :case_name, :power_supply_name, :other, :pc_introduction, :value, :tag,

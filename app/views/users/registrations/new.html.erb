@@ -27,3 +27,40 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+ <div class="container">
+    <span class="skiplink-text">Skip to main content</span>
+  </div>
+</a>
+
+    <form class="form-signin">
+  <div class="text-center mb-4">
+    <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <!-- <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1> -->
+    <h1 class="h3 mb-3 font-weight-normal">フローティングラベル</h1>
+    <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p> -->
+    <p><code>:placeholder-shown</code> 疑似要素を使って, フローティングラベルのついたフォームを作成しましょう。<a href="https://caniuse.com/#feat=css-placeholder-shown">最新の Chrome, Safari, Firefox で動作します。</a></p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+    <!-- <label for="inputEmail">Email address</label> -->
+    <label for="inputEmail">メールアドレス</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <!-- <label for="inputPassword">Password</label> -->
+    <label for="inputPassword">パスワード</label>
+  </div>
+
+  <div class="checkbox mb-3">
+    <label>
+      <!-- <input type="checkbox" value="remember-me"> Remember me -->
+      <input type="checkbox" value="remember-me"> 保存する
+    </label>
+  </div>
+  <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
+  <button class="btn btn-lg btn-primary btn-block" type="submit">サインイン</button>
+  <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
+</form>

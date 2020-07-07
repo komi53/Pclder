@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_100140) do
+ActiveRecord::Schema.define(version: 2020_07_07_042839) do
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "cpu_name"
+    t.string "cooler_name"
+    t.string "motherboard_name"
+    t.string "memory_name"
+    t.string "gpu_name"
+    t.string "storage_name"
+    t.string "case_name"
+    t.string "power_supply_name"
+    t.string "other"
+    t.text "pc_introduction"
+    t.string "value"
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
