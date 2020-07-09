@@ -59,7 +59,7 @@
 		</div>
 		<div class="field row">
 		    <span>タグ</span>
-		    <%= f.text_field :tag , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		    <%= f.text_field :tag_list , value: @post.tag_list.join(','), class: "form-control", placeholder: "AMD,Intel,GIGABYTE,ASRock,MSI,ASUS,..." %>
 		</div>
 		<div class="actions row">
 		    <%= f.submit "投稿する" , class: "btn btn-primary col-xs-12" %>

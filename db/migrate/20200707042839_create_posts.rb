@@ -14,7 +14,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
 	  t.string :other
 	  t.text :pc_introduction
 	  t.string :value
-      t.string :tag
+      t.string :tag_list
       t.string :post_image_id
       t.timestamps
     end
