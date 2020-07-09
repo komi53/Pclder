@@ -1,2 +1,85 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<%= form_for @post, :url => {:action => :update} do |f| %>
+<div class="row">
+<div class="col-xs-5">
+         <div class="item-image">
+            <%= attachment_image_tag @post, :post_image, class: "img-thumbnail", fallback: "no_image.jpg", size:"320x180" %>
+          </div>
+          <%= f.attachment_field :post_image, class: "file" %>
+      </div>
+</div>
+<div class="col-xs-5 ">
+
+		 <div class="field row">
+		    <span>タイトル</span>
+		    <%= f.text_field :title , class: "form-control", placeholder: "ゲーミングPC、ハイスペックPC..." %>
+		</div>
+		<div class="field row">
+		    <span>CPU</span>
+		    <%= f.text_field :cpu_name , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="field row">
+		    <span>CPUクーラー</span>
+		    <%= f.text_field :cooler_name , class: "form-control", placeholder: "虎徹 MarkII SCKTT-2000、Noctua NH-D15-CH-BK..." %>
+		</div>
+		<div class="field row">
+		    <span>マザーボード</span>
+		    <%= f.text_field :motherboard_name , class: "form-control", placeholder: "ASRock Z490 Steel Legend、GIGABYTE X570 AORUS MASTER..." %>
+		</div>
+		<div class="field row">
+		    <span>グラフィックボード</span>
+		    <%= f.text_field :gpu_name , class: "form-control", placeholder: "GIGABYTE RTX2060Super、MSI RTX2080..." %>
+		</div>
+		<div class="field row">
+		    <span>メモリ</span>
+		    <%= f.text_field :memory_name , class: "form-control", placeholder: "CORSAIR　CMK16GX4M2A2666C16、Crucial BL2K32G32C16U4B..." %>
+		</div>
+		<div class="field row">
+		    <span>ストレージ</span>
+		    <%= f.text_field :storage_name , class: "form-control", placeholder: "WesternDigital　WDS500G2B0C、SAMSUNG 860 EVO MZ-76E500B/IT..." %>
+		</div>
+		<div class="field row">
+		    <span>電源</span>
+		    <%= f.text_field :power_supply_name , class: "form-control", placeholder: "玄人志向　KRPW-BK650W/85+、Corsair HX850i CP-9020073-JP..." %>
+		</div>
+		<div class="field row">
+		    <span>ケース</span>
+		    <%= f.text_field :case_name , class: "form-control", placeholder: "Thermaltake Versa H26 Black、Phanteks ENTHOO EVOLV X GLASS..." %>
+		</div>
+		<div class="field row">
+		    <span>その他</span>
+		    <%= f.text_field :other , class: "form-control", placeholder: "HDD 3TB、グリス OC Master SMZ-01R..." %>
+		</div>
+		<div class="field row">
+		    <span>一言</span>
+		    <%= f.text_area :pc_introduction , class: "form-control", placeholder: "15万円代で作ってみました！、空冷でも冷やせます！..." %>
+		</div>
+		<div class="field row">
+		    <span>金額(円)</span>
+		    <%= f.text_field :value , class: "form-control", placeholder: "15900、400000..." %>
+		</div>
+		<div class="field row">
+		    <span>タグ</span>
+		    <%= f.text_field :tag , class: "form-control", placeholder: "Intel Core i7 10700K、AMD Ryzen9 3950X..." %>
+		</div>
+		<div class="actions row">
+		    <%= f.submit "変更を保存する" , class: "btn btn-primary col-xs-12" %>
+		</div>
+</div>
+<% end %>
+
+</div>
+
+<script>
+$(function(){
+    // inputのidから情報の取得
+    $('.file').on('change', function (e) {
+// ここから既存の画像のurlの取得
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".post_image").attr('src', e.target.result);
+    }
+// ここまで
+    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});
+</script>

@@ -13,45 +13,36 @@
   </head>
 
   <body>
-    <script src="jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-  <nav class="navbar navbar-dark bg-dark">
-    <a href="#menu-toggle" class="navbar-toggler-icon" id="menu-toggle">
-    </a>
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
-      </div>
-    </div>
-  </nav>
+
 
   <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+              <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                  <input class="search_input" type="text" name="" placeholder="Search...">
+                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+              </div>
                 <li class="sidebar-brand">
                       <a href="/">
                           Pclder
                       </a>
                       <% if user_signed_in? %>
-                      <li><%= link_to  user_path(current_user.id) do %>
-                         <span class="glyphicon glyphicon-home"></span> Home
-                       <% end %>
-                      </li>
-                      <li><a href="/users"><span class="glyphicon glyphicon-link"></span> Users</a></li>
-                      <li><a href="/books"><span class="glyphicon glyphicon-user"></span> Books</a></li>
-                      <li><a rel="nofollow" data-method="delete" href="/users/sign_out"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+                      <li><%= link_to 'Home', root_path %></li>
+                      <li><%= link_to 'Post', new_post_path %></li>
+                      <li><%= link_to 'Profile', user_path(current_user.id) %></li>
+                      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 
                       <% else %>
-                      <li><a href="/"> Home</a></li>
-                      <li><a href="/home/about"> About</a></li>
-                      <li><a href="/users/sign_up"> sign up</a></li>
-                      <li><a href="/users/sign_in"> login</a></li>
+                      <li><%= link_to 'Home', root_path %></li>
+                      <li><%= link_to 'Sign in', new_user_session_path %></li>
+                      <li><%= link_to 'Sign up', new_user_registration_path %></li>
                   </ul>
                 </div>
               <% end %>
@@ -61,12 +52,6 @@
 
     </div>
 
-  <script>
-    $("#menu-toggle").on('click', function(e) {
-        $("#wrapper").toggleClass("toggled");
-        e.preventDefault();
-    });
-  </script>
     <div class="container">
       <%= yield %>
     </div>

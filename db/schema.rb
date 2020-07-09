@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_042839) do
     t.text "pc_introduction"
     t.string "value"
     t.string "tag"
+    t.string "post_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

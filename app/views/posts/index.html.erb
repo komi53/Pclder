@@ -1,2 +1,15 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+	<% @posts.each do |post| %>
+	<tr>
+	  <td><%= link_to  post_path(post.user.id) do %>
+                 <%= attachment_image_tag post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+               <% end %>
+               </td>
+
+      <td><%= link_to post.title, post_path(post.id) %></td>
+      <td><%= post.title %></td>
+
+  </tr>
+   <% end %>
+	</table>

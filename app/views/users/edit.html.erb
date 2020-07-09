@@ -1,0 +1,63 @@
+<div class="col-md-6 offset-md-3">
+      <div class="form-signin">
+          <div class="text-center mb-4">
+         <% # <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> %>
+          <h1 class="h3 mb-3 font-weight-normal">プロフィール編集</h1>
+        </div>
+      </div>
+    <%= form_for(@user) do |f| %>
+      <div class="col-md-6 offset-md-3">
+          <%= attachment_image_tag @user, :profile_image, class: "rounded-circle border border-dark", fallback: "no_image.jpg", size:"200x200"%>
+          <%= f.attachment_field :profile_image, class: "file" %>
+	  </div>
+      <div class="form-inline">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <%= f.label :name, value: "name @" %>&nbsp;<%= f.label :id, value: "Id" %>&nbsp;
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "User name", required: "", autofocus: "" %>
+                <span class="input-group-text" id="basic-addon1">@</span>
+            <%= f.text_field :at_name, autofocus: true, autocomplete: "at_name", class: "form-control", placeholder: "Id", required: "", autofocus: "", describedby: "basic-addon1" %>
+          </div>
+        </div>
+     </div>
+      <div class="form-label-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email address", required: "", autofocus: "" %>
+      </div>
+      <div class="form-label-group">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", id: "input-text", placeholder: "200字以内", required: "", autofocus: "" %>
+        <p id="counter" style="text-align: right;">0/200</p>
+      </div>
+
+<%= link_to "パスワードを変更する" , edit_user_registration_path %>
+
+      <div>&nbsp;</div>
+      <div class="actions col-md-6 offset-md-3">
+        <%= f.submit "変更を保存", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+</div>
+<script>
+//画像プレビュー
+$(function(){
+    // inputのidから情報の取得
+    $('.file').on('change', function (e) {
+// ここから既存の画像のurlの取得
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".profile_image").attr('src', e.target.result);
+    }
+// ここまで
+    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});
+
+//文字数カウント
+$(function(){
+	 $("#input-text").on("keyup", function() {
+   let countNum = String($(this).val().length);
+   $("#counter").text(countNum + "/200");
+ });
+});
+</script>

@@ -1,0 +1,20 @@
+	  <%= link_to  user_path(@post.user_id) do %>
+                 <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+      <% end %>
+      <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+      <%= @post.title %>
+      <%= @post.cpu_name %>
+      <%= @post.cooler_name %>
+      <%= @post.motherboard_name %>
+      <%= @post.memory_name %>
+      <%= @post.gpu_name %>
+      <%= @post.storage_name %>
+      <%= @post.case_name %>
+      <%= @post.power_supply_name %>
+      <%= @post.other %>
+      <%= @post.pc_introduction %>
+      <%= @post.value %>
+      <%= @post.tag %>
+
+<%=link_to '編集', edit_post_path(@post.id) %>
+<%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
