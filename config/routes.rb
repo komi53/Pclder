@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'posts#index'
-  resources :posts
+  resources :posts do
+  resource :favorites, only: [:create, :destroy]
+  resources :post_comments, only: [:create, :destroy]
+  end
   scope module: :users do
     devise_for :users
   end

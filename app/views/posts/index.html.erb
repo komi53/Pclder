@@ -13,6 +13,6 @@
             <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
           <% end %>
   </tr>
-   <% end %>
-
-	</table>
+    By<%= post.user.name %>
+    <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+    <% end %>
