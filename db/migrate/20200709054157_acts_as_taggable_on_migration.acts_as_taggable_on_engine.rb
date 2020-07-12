@@ -22,6 +22,7 @@ ActsAsTaggableOnMigration.class_eval do
       # Limit is created to prevent MySQL error on index
       # length for MyISAM table type: http://bit.ly/vgW2Ql
       t.string :context, limit: 128
+      t.string :tag_list
 
       t.datetime :created_at
     end
