@@ -6,7 +6,7 @@ else
 end
 AddMissingIndexesOnTaggings.class_eval do
   def change
-    add_index ActsAsTaggableOn.taggings_table, :tag_id unless index_exists? ActsAsTaggableOn.taggings_table, :tag_id
+    add_index ActsAsTaggableOn.taggings_table, :tag_list unless index_exists? ActsAsTaggableOn.taggings_table, :tag_list
     add_index ActsAsTaggableOn.taggings_table, :taggable_id unless index_exists? ActsAsTaggableOn.taggings_table, :taggable_id
     add_index ActsAsTaggableOn.taggings_table, :taggable_type unless index_exists? ActsAsTaggableOn.taggings_table, :taggable_type
     add_index ActsAsTaggableOn.taggings_table, :tagger_id unless index_exists? ActsAsTaggableOn.taggings_table, :tagger_id
