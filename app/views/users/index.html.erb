@@ -1,0 +1,22 @@
+<% if @users.present? %>
+      	<% @users.each do |user| %>
+	  <%= link_to  user_path(user.id) do %>
+                 <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+               <% end %>
+      <%= link_to user.name, user_path(user.id) %>
+      <% end %>
+            <%= search_form_for @q, url: search_posts_path do |f| %>
+        <%= f.hidden_field :title_cont, autofocus: true, placeholder: "Search...", :value => @content %>
+        <button type="submit" class="btn btn-success">
+            投稿
+          </button>
+        <% end %>
+<% else %>
+ヒットしませんでした。
+      <%= search_form_for @q, url: search_posts_path do |f| %>
+        <%= f.hidden_field :title_cont, autofocus: true, placeholder: "Search...", :value => @content %>
+        <button type="submit" class="btn btn-success">
+            投稿
+          </button>
+        <% end %>
+<% end %>

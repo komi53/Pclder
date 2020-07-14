@@ -54,10 +54,11 @@ ActiveRecord::Schema.define(version: 2020_07_10_083004) do
     t.string "tagger_type"
     t.integer "tagger_id"
     t.string "context", limit: 128
+    t.string "tag_list"
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["tag_list", "taggable_id", "tagger_id"], name: "taggings_idx", unique: true
+    t.index ["tag_list"], name: "index_taggings_on_tag_list"
     t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
     t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
     t.index ["taggable_id"], name: "index_taggings_on_taggable_id"

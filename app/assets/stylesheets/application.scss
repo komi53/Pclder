@@ -105,7 +105,7 @@
 }
 
 .search_input{
-color: #fff;
+color: #000;
 border: 0;
 outline: 0;
 background: none;
@@ -125,4 +125,10 @@ align-items: center;
 border-radius: 25%;
 color: #999999;
 text-decoration:none;
+background-color: transparent;
+border: none;
+cursor: pointer;
+outline: none;
+padding: 0;
+appearance: none;
 }

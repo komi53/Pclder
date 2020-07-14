@@ -23,12 +23,16 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+              <%= search_form_for @q, url: search_posts_path do |f| %>
               <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
-                  <input class="search_input" type="text" name="" placeholder="Search...">
-                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    <%= f.search_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, class: "search_input", placeholder: "Search..." %>
+                    <button type="submit" class="search_icon">
+                    <i class="fas fa-search"></i>
+                    </button>
                 </div>
               </div>
+              <% end %>
                 <li class="sidebar-brand">
                       <a href="/">
                           Pclder
