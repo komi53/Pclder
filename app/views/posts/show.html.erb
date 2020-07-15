@@ -22,6 +22,11 @@
             <%=link_to '編集', edit_post_path(@post.id) %>
       <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
 
+    <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=#{ @post.title }/&hashtags=Pclder", class: 'fab fa-twitter', data: { show_count: false }, title: 'Twitter', target: '_blank' %>
+    <%= link_to "https://line.me/R/msg/text/?#{request.url}" do %>
+        <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
+    <% end %>
+
        <i class="fa fa-comment"></i>
   <a href="#comments"><%= @post.post_comments.count %></a>
     <div class="comment-list bt style-2" id="comments">
@@ -31,12 +36,12 @@
      <% if @post.favorited_by?(current_user) %>
        <%= link_to post_favorites_path(@post), method: :delete do %>
     <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-     <%= @post.favorites.count %> いいね
+     <%= @post.favorites.count %>いいね
   <% end %>
 <% else %>
   <%= link_to post_favorites_path(@post), method: :post do %>
-    <i class="fa fa-heart-o" aria-hidden="true"></i>
-    <%= @post.favorites.count %> いいね
+    <i class="far fa-heart" aria-hidden="true"></i>
+    <%= @post.favorites.count %>いいね
   <% end %>
 <% end %>
 
@@ -76,3 +81,5 @@
   </div>
   <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+
+ <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>

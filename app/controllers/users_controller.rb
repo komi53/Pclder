@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	@user.update(user_params)
-	redirect_to root_path
+	 　redirect_to root_path
   end
   def search
     @content = params["search"]["content"]

@@ -36,7 +36,7 @@
     <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
     <% end %>
     <%= form_tag(search_users_path, method: :get) do %>
-     <%= hidden_field_tag 'search[content]', @q.title_cont %>
+     <%= hidden_field_tag 'search[content]', @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>
         <button type="submit" class="btn btn-success">
             ユーザー
           </button>
@@ -44,7 +44,7 @@
   <% else %>
     ヒットしませんでした。
     <%= form_tag(search_users_path, method: :get) do %>
-     <%= hidden_field_tag 'search[content]', @q.title_cont %>
+     <%= hidden_field_tag 'search[content]', @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>
         <button type="submit" class="btn btn-success">
             ユーザー
           </button>

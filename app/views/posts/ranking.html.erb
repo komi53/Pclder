@@ -1,0 +1,15 @@
+	<% @posts.each do |post| %>
+	 <tr>
+	    <td><%= link_to  post_path(post.user.id) do %>
+            <%= attachment_image_tag post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+          <% end %>
+      </td>
+      <td><%= link_to post.title, post_path(post.id) %></td>
+      <td><%= post.title %></td>
+           <% post.tag_list.each do |tag| %>
+            <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
+          <% end %>
+   </tr>
+   By<%= post.user.name %>
+   <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+   <% end %>

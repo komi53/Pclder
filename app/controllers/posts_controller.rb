@@ -56,6 +56,10 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def ranking
+    @posts = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+  end
+
 private
      def post_params
       params.require(:post).permit(:title, :cpu_name, :cooler_name, :motherboard_name, :memory_name, :gpu_name, :storage_name, :case_name, :power_supply_name, :other, :pc_introduction, :value, :tag_list, :post_image, :user_id)
