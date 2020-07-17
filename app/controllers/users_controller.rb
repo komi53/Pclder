@@ -19,7 +19,13 @@ class UsersController < ApplicationController
     @users = User.where('name LIKE ?', '%'+@content+'%')
     render :index
   end
+  def follows
 
+  end
+
+  def followers
+    
+  end
   private
      def user_params
       params.require(:user).permit(:name, :email, :introduction, :profile_image, :at_name)
