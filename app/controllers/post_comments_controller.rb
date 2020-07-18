@@ -2,9 +2,10 @@ class PostCommentsController < ApplicationController
   def create
   	post = Post.find(params[:post_id])
     comment = PostComment.new(post_comment_params)
-	comment.user_id = current_user.id
+	  comment.user_id = current_user.id
     comment.post_id = post.id
     comment.save
+    post.create_notification_comment!(current_user, comment.id)
     redirect_to post_path(post)
   end
 
