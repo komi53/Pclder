@@ -24,7 +24,7 @@
 
     <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=#{ @post.title }/&hashtags=Pclder", class: 'fab fa-twitter', data: { show_count: false }, title: 'Twitter', target: '_blank' %>
     <%= link_to "https://line.me/R/msg/text/?#{request.url}" do %>
-        <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
+        <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
     <% end %>
 
        <i class="fa fa-comment"></i>

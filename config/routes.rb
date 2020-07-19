@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'follows' => 'relationships#follower', as: 'follows'
     get 'followers' => 'relationships#followed', as: 'followers'
   end
+  patch "users/leave" => "users#leave"
+  get "users/confirm" => "users#confirm"
   resources :notifications, only: :index
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,29 +1,52 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
 <% if @posts %>
+みんなの投稿
 	<% @posts.each do |post| %>
-	 <tr>
-	    <td><%= link_to  post_path(post.user.id) do %>
-            <%= attachment_image_tag post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+    <div class="well">
+      <div class="media">
+            <%= link_to  user_path(post.user_id) do %>
+                 <%= attachment_image_tag post.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+            <% end %>
+      <div class="media-body">
+        <div class="media-heading"><%= link_to post.title, post_path(post.id), class: "btn text-dark" %></div>
+          <%= link_to  post_path(post.id) do %>
+            <%= attachment_image_tag post, :post_image, format: 'jpeg', fallback: "no_image.jpg",:size =>'600x400' %>
           <% end %>
-      </td>
-      <td><%= link_to post.title, post_path(post.id) %></td>
-      <td><%= post.title %></td>
-           <% post.tag_list.each do |tag| %>
+          <p class="text-left"><%= post.user.name %>@<%= post.user.at_name %></p>
+          <p>
+            <%= post.pc_introduction %>
+          </p>
+
+        <span><%= post.created_at.strftime('%Y/%m/%d') %> </span>
+            |
+            <span><i class="fa fa-comment"></i><%= link_to "#{post.post_comments.count}", post_path(post.id) %></span>
+            |
+            <span><i class="fa fa-tags"></i>
+          <% post.tag_list.each do |tag| %>
             <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
           <% end %>
-   </tr>
-   By<%= post.user.name %>
-   <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
-   <% end %>
-    aaaaaaaaaaaaaaaa
+        </span>
+            |
+            <span>
+              <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=#{ post.title }/&hashtags=Pclder", class: 'fab fa-twitter fa-lg', data: { show_count: false }, title: 'Twitter', target: '_blank', style: "text-decoration: none;" %>
+            </span>
+            <span>
+              <%= link_to "https://line.me/R/msg/text/?#{request.url}" do %>
+                   <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="false" style="display: none; "></div>
+               <% end %>
+             </span>
+       </div>
+    </div>
+  </div>
+  <hr>
+<% end %>
 
 <% elsif @q_posts %>
   <% if @q_posts.present? %>
+  "<%= @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>"の検索結果
     <% @q_posts.each do |post| %>
       <tr>
         <td><%= link_to  post_path(post.user.id) do %>
-              <%= attachment_image_tag post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+              <%= attachment_image_tag post, :post_image, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
             <% end %>
         </td>
         <td><%= link_to post.title, post_path(post.id) %></td>
@@ -32,6 +55,8 @@
           <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
         <% end %>
       </tr>
+
+
     By<%= post.user.name %>
     <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
     <% end %>
@@ -41,7 +66,10 @@
             ユーザー
           </button>
     <% end %>
+
+
   <% else %>
+  "<%= @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>"の検索結果
     ヒットしませんでした。
     <%= form_tag(search_users_path, method: :get) do %>
      <%= hidden_field_tag 'search[content]', @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>
@@ -51,3 +79,5 @@
         <% end %>
   <% end %>
 <% end %>
+
+ <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>

@@ -1,4 +1,5 @@
 <% if @users.present? %>
+"<%= @content %>"の検索結果
       	<% @users.each do |user| %>
 	  <%= link_to  user_path(user.id) do %>
                  <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
@@ -6,15 +7,16 @@
       <%= link_to user.name, user_path(user.id) %>
       <% end %>
             <%= search_form_for @q, url: search_posts_path do |f| %>
-        <%= f.hidden_field :title_cont, autofocus: true, placeholder: "Search...", :value => @content %>
+        <%= f.hidden_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, placeholder: "Search...", :value => @content %>
         <button type="submit" class="btn btn-success">
             投稿
           </button>
         <% end %>
 <% else %>
+"<%= @content %>"の検索結果
 ヒットしませんでした。
       <%= search_form_for @q, url: search_posts_path do |f| %>
-        <%= f.hidden_field :title_cont, autofocus: true, placeholder: "Search...", :value => @content %>
+        <%= f.hidden_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, placeholder: "Search...", :value => @content %>
         <button type="submit" class="btn btn-success">
             投稿
           </button>
