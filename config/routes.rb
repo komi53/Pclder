@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
   get 'goods/search' => 'goods#search'
   root to: 'posts#index'
   get 'chat/:id' => 'chats#show', as: 'chat'

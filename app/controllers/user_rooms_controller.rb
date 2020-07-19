@@ -1,0 +1,3 @@
+class UserRoomsController < ApplicationController
+
+end

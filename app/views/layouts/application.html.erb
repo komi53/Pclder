@@ -43,9 +43,10 @@
                       <li><%= link_to 'Home', root_path %></li>
                       <li><%= link_to 'Ranking', ranking_posts_path %></li>
                       <li><%= link_to 'Post', new_post_path %></li>
+                      <li><%= link_to 'Message', rooms_index_path %></li>
+                      <li><%= link_to 'notification', notifications_path %></li>
                       <li><%= link_to 'Profile', user_path(current_user.id) %></li>
                       <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-
                       <% else %>
                       <li><%= link_to 'Home', root_path %></li>
                       <li><%= link_to 'Sign in', new_user_session_path %></li>
