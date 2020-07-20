@@ -1,2 +1,2 @@
-$('.message').append("<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send"><%= @chat.message %><span class="msg_time_send"><%= @chat.created_at.strftime("%H:%M %p,%b %d") %></span></div><div class="img_cont_msg"><%= attachment_image_tag @chat.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %></div></div>");
+$('.message').append("");
 $('input[type=text]').val("")
