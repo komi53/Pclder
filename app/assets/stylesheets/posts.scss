@@ -1,12 +1,98 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.well{
+
+.social{
 background-color: pink;
 }
-.media {
 
-}
 .list {
 	display: inline-block;
+}
+.post-grid {
+	position: relative;
+	height: 200px;
+}
+.post-image {
+	position: absolute;
+	top: 50%;
+ 	left: 50%;
+	transform: translate(-50%,-20%);
+	width:400px;
+	height:600px;
+}
+.post-grid,.post-grid .post-image {
+	overflow:hidden
+}
+.post-grid {
+	margin-bottom: 20px;
+	font-family:'Open Sans',sans-serif;
+	text-align:center;position:relative;
+	transition:all .5s ease 0s;
+}
+.post-grid:hover {
+	box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+.post-grid .post-image a {
+	display:block;
+}
+.post-grid .post-image img {
+	width:100%;height:auto;
+	transition:all .5s ease 0s;
+}
+.post-grid:hover .post-image img {
+	transform:scale(1.1);
+}
+.post-grid .post-content {
+	padding:12px 12px 15px;
+	transition:all .5s ease 0s;
+}
+.post-grid:hover .post-content {
+	transform:scale(1.1);
+	background-color: #CCCCCC;
+}
+.post-grid .title {
+	font-size:20px;
+	font-weight:600;
+	text-transform:capitalize;margin:0 0 10px;transition:all .3s ease 0s;
+}
+.post-grid .title a {
+	color: #444444;
+	text-decoration: none;
+}
+.post-grid .title a:hover {
+	color:#2e86de;
+}
+.post-grid .post-user {
+	font-size:14px;
+	font-weight:600;
+	color:#FFF;
+}
+.post-grid .price span {
+	color:#999;
+	font-size:15px;
+	font-weight:400;
+	margin-left:7px;
+	display:inline-block;
+}
+
+@media only screen and (max-width:990px) {
+	.post-grid{margin-bottom:30px;
+	}
+}
+.user-link{
+	text-decoration: none;
+	 span {
+		text-decoration: none;
+		color:white;
+	}
+}
+.share{
+	display: inline;
+	margin-left:5px;
+
+}
+.show-image {
+    width: auto;
+    height: 400px;
 }

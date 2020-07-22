@@ -1,85 +1,179 @@
-
-	  <%= link_to  user_path(@post.user_id) do %>
-                 <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+<div class="row">
+    <div class="col-md-4">
+	   <%= link_to  user_path(@post.user_id), class: "user-link" do %>
+                 <%= attachment_image_tag @post.user, :profile_image, class: "rounded-circle border border-white", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+                 <span><%= @post.user.name %>@<%= @post.user.at_name %></span>
       <% end %>
-      <%= attachment_image_tag @post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+    </div>
+    <div class="offset-md-9">
+      <% if @post.user == current_user %>
+        <%=link_to '編集', edit_post_path(@post.id) %>
+        <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
+      <% end %>
+    </div>
+    <div class="col-md-8 offset-md-2">
+    <%= attachment_image_tag @post, :post_image, format: 'jpeg', fallback: "no_image.jpg", class: "show-image" %>
+    </div>
+    <div class="col-md-8 offset-md-2">
       <%= @post.title %>
-      <%= @post.cpu_name %>
-      <%= @post.cooler_name %>
-      <%= @post.motherboard_name %>
-      <%= @post.memory_name %>
-      <%= @post.gpu_name %>
-      <%= @post.storage_name %>
-      <%= @post.case_name %>
-      <%= @post.power_supply_name %>
-      <%= @post.other %>
-      <%= @post.pc_introduction %>
-      <%= @post.value %>
-      <%= @post.tag_list %>
-           <% @post.tag_list.each do |tag| %>
-            <%= link_to tag, root_path,class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
-          <% end %>
-            <%=link_to '編集', edit_post_path(@post.id) %>
-      <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
 
+  <h1>Rakuserach</h1>
+<div class='content'>
+  <div id="search-box">
+    <%= form_tag url: post_path, method: :get, remote: true do %>
+        <%= text_field_tag :keyword, "",  id: "good_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+    <% end %>
+  </div>
+  <h2>検索結果</h2>
+  <div id='good_list'>
+     <%= render partial: 'good_list' %>
+  </div>
+</div>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <%= render partial: 'good_list' %>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>パーツリスト</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CPU</td>
+        <td><%= @post.cpu_name %></td>
+      </tr>
+      <tr>
+        <td>CPUクーラー</td>
+        <td><%= @post.cooler_name %></td>
+      </tr>
+      <tr>
+        <td>マザーボード</td>
+        <td><%= @post.motherboard_name %></td>
+      </tr>
+      <tr>
+        <td>メモリ</td>
+        <td><%= @post.memory_name %></td>
+      </tr>
+      <tr>
+        <td>GPU</td>
+        <td><%= @post.gpu_name %></td>
+      </tr>
+      <tr>
+        <td>ストレージ</td>
+        <td><%= @post.storage_name %></td>
+      </tr>
+      <tr>
+        <td>ケース</td>
+        <td><%= @post.case_name %></td>
+      </tr>
+      <tr>
+        <td>電源</td>
+        <td><%= @post.power_supply_name %></td>
+      </tr>
+      <tr>
+        <td>その他</td>
+        <td><%= @post.other %></td>
+      </tr>
+      <tr>
+        <td>金額</td>
+        <td><%= @post.value %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td><% @post.tag_list.each do |tag| %>
+            <%= link_to tag, posts_path(tag_name: tag),class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
+            <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="row  border border-secondary">
+  <span>紹介</span>
+  <div class="col-md-12">
+    <%= @post.pc_introduction %>
+  </div>
+</div>
+<div class="row">
+  <div class="offset-md-10">
+    <% if user_signed_in? %>
+      <% if @post.favorited_by?(current_user) %>
+        <%= link_to post_favorites_path(@post), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+          <%= @post.favorites.count %>いいね 
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@post), method: :post do %>
+          <i class="far fa-heart" aria-hidden="true"></i>
+          <%= @post.favorites.count %>いいね 
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <i class="far fa-heart" aria-hidden="true"></i>
+        <%= @post.favorites.count %>
+      <% end %>
+    <% end %>
+    <div class="share">
     <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=#{ @post.title }/&hashtags=Pclder", class: 'fab fa-twitter', data: { show_count: false }, title: 'Twitter', target: '_blank' %>
+    </div>
+    <div class="share">
     <%= link_to "https://line.me/R/msg/text/?#{request.url}" do %>
         <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
     <% end %>
-
-       <i class="fa fa-comment"></i>
-  <a href="#comments"><%= @post.post_comments.count %></a>
-    <div class="comment-list bt style-2" id="comments">
-     <div class="float-wrapper">
-     <h2 class="comment-count"><%= @post.post_comments.count %>件コメント</h2>
-     </div>
-     <% if @post.favorited_by?(current_user) %>
-       <%= link_to post_favorites_path(@post), method: :delete do %>
-    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-     <%= @post.favorites.count %>いいね
-  <% end %>
-<% else %>
-  <%= link_to post_favorites_path(@post), method: :post do %>
-    <i class="far fa-heart" aria-hidden="true"></i>
-    <%= @post.favorites.count %>いいね
-  <% end %>
-<% end %>
-
- <% @post.post_comments.each do |post_comment| %>
-      <div class="comment-body bb">
-        <div class="comment-avatar">
-          <div class="avatar">
-            <%= attachment_image_tag post_comment.post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
-          </div>
-        </div>
-        <div class="comment-text">
-          <div class="comment-author clearfix">
-            <a href="#" class="link-author"><%= post_comment.user.name %></a>
-            <span class="comment-meta">
-              <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d/%H:%M:%S') %></span>
-            </span>
-
-
-
-          <div class="comment-entry"><%= post_comment.comment %></div>
-          <% if post_comment.user == current_user%>
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
-
-            </div>
-  <% end %>
-        </div>
-  <% end %>
-
-
-
-
-<%= form_for [@post, @post_comment] do |f| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
     </div>
   </div>
-  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
-
+</div>
+<div class="row">
+  <h2 class="comment-count"><%= @post.post_comments.count %>件コメント</h2>
+  <% @post.post_comments.each do |post_comment| %>
+   <div class="col-md-12">
+    <%= link_to user_path(post_comment.user) do %>
+      <%= attachment_image_tag post_comment.user, :profile_image, class: "rounded-circle border border-white", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+    <% end %>
+    <%= link_to user_path(post_comment.user), class: "user-link" do %>
+          <span><%= post_comment.user.name %>@<%= post_comment.user.at_name %></span>
+    <% end %>
+    <div class="col-md-12">
+     <%= post_comment.comment %>
+    </div>
+    <% if post_comment.user == current_user%>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment),class: "pull-right", method: :delete %>
+    <% end %>
+    <span class="offset-md-10" style="font-size:14px;"><%= post_comment.created_at.strftime('%Y/%m/%d/%H:%M:%S') %></span>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-12">
+  <%= form_for [@post, @post_comment] do |f| %>
+      <%= f.text_area :comment, class: "form-control col-md-12", placeholder: "コメントをここに" %>
+      <%= f.submit "送信", class: "btn btn-lg btn-base-1 mt-20 pull-right" , style: "color:white;" %>
+  <% end %>
+  </div>
+</div>
  <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>

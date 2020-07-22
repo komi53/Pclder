@@ -2,17 +2,18 @@ class UsersController < ApplicationController
   def index
   end
   def show
-  	@user = User.find(params[:id])
+  	@user = User.with_deleted.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
-  	@user = User.find(params[:id])
+  	@user = User.with_deleted.find(params[:id])
   end
 
   def update
   	@user = User.find(params[:id])
   	@user.update(user_params)
-	  redirect_to root_path
+	  redirect_to user_path(@user)
   end
   def search
     @content = params["search"]["content"]

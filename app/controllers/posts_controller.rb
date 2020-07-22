@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
   def new
   	@post = Post.new
   end
@@ -9,11 +10,16 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
+    @popular_tags = ActsAsTaggableOn::Tag.most_used().page(params[:page]).without_count.per(10)
+    @posts_rank = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    if params[:keyword]
+      @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    end
   end
 
   def edit
@@ -57,7 +63,7 @@ class PostsController < ApplicationController
   end
 
   def ranking
-    @posts = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    @posts = Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))
   end
 
 private

@@ -17,7 +17,7 @@
 		<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
 		<% else %>
 			<%= link_to post_path(notification.post) do %>
-				<% notification.post.user.name %>さんの投稿
+				<% notification.post.user.name %>さんの投稿にコメントしました
 			<% end %>
 			<% end %>
 	<% end %>

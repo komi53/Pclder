@@ -1,10 +1,10 @@
 <% if @items.present? %>
 <% @items.first(10).each do |item| %>
 <div>
+	<li>
 		<img src="<%= item['smallImageUrls'][0] %>">
 		<%= item.name %>
- 		<p><%= item.price %>円</p>
+ <%= item.price %></li>
  </div>
-<hr>
 <% end %>
 <% end %>

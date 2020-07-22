@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
@@ -12,7 +13,7 @@ class ChatsController < ApplicationController
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
-    @chats = @room.chats.page(params[:page]).per(9).order(created_at: "DESC")
+    @chats = @room.chats.page(params[:page]).without_count.per(8).order(created_at: "DESC")
     @chats_name = @room.chats
     @chat = Chat.new(room_id: @room.id)
   end

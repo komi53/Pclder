@@ -29,10 +29,8 @@
         <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", id: "input-text", placeholder: "200字以内", required: "", autofocus: "" %>
         <p id="counter" style="text-align: right;">0/200</p>
       </div>
-
-<%= link_to "パスワードを変更する" , edit_user_registration_path %>
-<%= link_to "退会する" , users_confirm_path %>
-
+      <%= link_to "パスワードを変更する" , edit_user_registration_path %>
+      <%= link_to "退会する" , users_confirm_path %>
       <div>&nbsp;</div>
       <div class="actions col-md-6 offset-md-3">
         <%= f.submit "変更を保存", class: "btn btn-primary btn-block" %>

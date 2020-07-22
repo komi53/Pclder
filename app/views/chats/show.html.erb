@@ -1,8 +1,9 @@
 <% @chats_name.first(1).each do |chat| %>
 		<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= link_to "<", rooms_index_path %><%= chat.user.name %></h1>
 <% end %>
-	<div class="message">
 		<div class="card-body msg_card_body">
+		   <%= link_to_next_page @chats, '<', class: "next" %>
+		   <%= link_to_prev_page @chats, '>', class: "prev" %>
 			<% @chats.reverse_each do |chat| %>
 		 		<% unless chat.user_id == current_user.id %>
 					<div class="d-flex justify-content-start mb-4">
@@ -27,10 +28,9 @@
 				<% end %>
 			<% end %>
 		</div>
-	<div class="card-footer">
-		<%= form_with model: @chat, data: {remote: true} do |f| %>
-			<%= f.text_field :message, class: "form-control type_msg", placeholder: "Type your message..." %>
-			<%= f.hidden_field :room_id %>
-		<% end %>
-	</div>
-</div>
+		<div class="card-footer">
+			<%= form_with model: @chat, data: {remote: true} do |f| %>
+				<%= f.text_field :message, class: "form-control type_msg", placeholder: "Type your message..." %>
+				<%= f.hidden_field :room_id %>
+			<% end %>
+		</div>

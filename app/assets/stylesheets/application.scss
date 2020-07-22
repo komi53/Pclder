@@ -15,122 +15,265 @@
  *= require tagit.ui-zendesk
  *= require_self
  */
-
-
-/* sidebar */
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background-image: image-url("build_pc.jpg");
-    background-size: cover;
+.view-all {
+	background-color: #444444;
+	color: white;
 }
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
-/* Sidebar Styles */
-
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
+@media screen and (min-width:1580.02px) {
+    body {
     margin: 0;
-    padding: 0;
-    list-style: none;
-    li {
-    text-indent: 20px;
-    line-height: 40px;
-	}
-	li a {
-	    display: block;
-	    text-decoration: none;
-	    color: #999999;
-	}
-	li a:hover {
-	    text-decoration: none;
-	    color: #fff;
-	    background: rgba(255,255,255,0.2);
-	}
-	> .sidebar-brand {
-	    height: 65px;
-	    font-size: 18px;
-	    line-height: 60px;
-	}
-	> .sidebar-brand a {
-	    color: #fff;
-	}
-	> .sidebar-brand a:hover {
-	    background: none;
-	}
-}
-
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
     }
+    .responsive-nav {
+    z-index: -1000;
+    position:absolute;
+    left:-10000px;
+    top:-10000px;
+    visibility:hidden;
+    background: #222;
+    }
+    /* sidebar */
     #sidebar-wrapper {
+        z-index: 1000;
+        position: fixed;
+        left: 250px;
         width: 250px;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
+        background-image: image-url("build_pc.jpg");
+        background: #222;
+        background-size: cover;
     }
     #page-content-wrapper {
-        padding: 20px;
-        position: relative;
+        width: 100%;
+        position: absolute;
+        padding: 15px;
+    }
+
+    /* Sidebar Styles */
+
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+        text-indent: 20px;
+        line-height: 40px;
+    	}
+    	li a {
+    	    display: block;
+    	    text-decoration: none;
+    	    color: #999999;
+    	}
+    	li a:hover {
+    	    text-decoration: none;
+    	    color: #fff;
+    	    background: rgba(255,255,255,0.2);
+    	}
+    	> .sidebar-brand {
+    	    height: 65px;
+    	    font-size: 18px;
+    	    line-height: 60px;
+    	}
+    	> .sidebar-brand a {
+    	    color: #fff;
+    	}
+    	> .sidebar-brand a:hover {
+    	    background: none;
+    	}
+    }
+        /*サーチバー*/
+    .searchbar{
+        margin-bottom: auto;
+        margin-top: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 5px;
+
+        &:hover > .search_input{
+        padding: 0 5px;
+        width: 200px;
+        caret-color:red;
+        transition: width 0.2s linear;
+        }
+
+        &:hover > .search_icon{
+        background: #fff;
+        color: #e74c3c;
+        }
+
+    }
+
+    .search_input{
+    color: #000;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 20px;
+    transition: width 0.4s linear;
+    }
+
+    .search_icon{
+    height: 20px;
+    width: 20px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    color: #999999;
+    text-decoration:none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
     }
 }
-/*サーチバー*/
-.searchbar{
-	margin-bottom: auto;
-	margin-top: 30px;
-	height: 30px;
-	background-color: #fff;
-	border-radius: 15px;
-	padding: 5px;
+@media screen and (max-width:1580px) {
+    body {
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    padding-top: 65px;
+    }
+    .responsive-nav {
+    background: #222;
+    }
+    .link{
+        text-decoration: none;
+        color:white;
+    }
+   #sidebar-wrapper {
+        z-index: -1;
+        position: fixed;
+        left: 250px;
+        width: 250px;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
+        background-image: image-url("build_pc.jpg");
+        background: #222;
+        background-size: cover;
+    }
+    #page-content-wrapper {
+        width: 100%;
+        position: absolute;
+        padding: 15px;
+    }
 
-	&:hover > .search_input{
-	padding: 0 5px;
-	width: 200px;
-	caret-color:red;
-	transition: width 0.2s linear;
-	}
+    /* Sidebar Styles */
 
-	&:hover > .search_icon{
-	background: #fff;
-	color: #e74c3c;
-	}
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+        text-indent: 20px;
+        line-height: 40px;
+        }
+        li a {
+            display: block;
+            text-decoration: none;
+            color: #999999;
+        }
+        li a:hover {
+            text-decoration: none;
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+        }
+        > .sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+        > .sidebar-brand a {
+            color: #fff;
+        }
+        > .sidebar-brand a:hover {
+            background: none;
+        }
+    }
+    /*サーチバー*/
+    .searchbar{
+        margin-bottom: auto;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 5px;
+
+        &:hover > .search_input{
+        padding: 0 5px;
+        width: 200px;
+        caret-color:red;
+        transition: width 0.2s linear;
+        }
+
+        &:hover > .search_icon{
+        background: #fff;
+        color: #e74c3c;
+        }
+
+    }
+
+    .search_input{
+    color: #000;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 20px;
+    transition: width 0.4s linear;
+    }
+
+    .search_icon{
+    height: 20px;
+    width: 20px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    color: #999999;
+    text-decoration:none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    }
 
 }
 
-.search_input{
-color: #000;
-border: 0;
-outline: 0;
-background: none;
-width: 0;
-caret-color:transparent;
-line-height: 20px;
-transition: width 0.4s linear;
+header {
+    background: #444444;
+    color: #ffffff;
+    height: 40px;
 }
 
-.search_icon{
-height: 20px;
-width: 20px;
-float: right;
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 25%;
-color: #999999;
-text-decoration:none;
-background-color: transparent;
-border: none;
-cursor: pointer;
-outline: none;
-padding: 0;
-appearance: none;
+main {
+    background:#444444;
+    flex: 1;
+}
+
+footer {
+    background: #444444;
+    color: #ffffff;
+    height: 40px;
 }

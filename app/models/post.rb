@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 	has_many :notifications, dependent: :destroy
 	acts_as_taggable
 	
+
 	def favorited_by?(user)
 	favorites.where(user_id: user.id).exists?
 	end

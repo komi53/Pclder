@@ -1,15 +1,49 @@
-	<% @posts.each do |post| %>
-	 <tr>
-	    <td><%= link_to  post_path(post.user.id) do %>
-            <%= attachment_image_tag post, :post_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+いいねランキング
+<div class="container">
+  <div class="row align-items-strech">
+  <% @posts.each.with_index(1) do |post, index| %>
+	  <div class="col-md-4">
+      <%= "No.#{index}" %>
+    <div class="post-grid">
+      <div class="post-image">
+        <%= attachment_image_tag post, :post_image, format: 'jpeg', fallback: "no_image.jpg" %>
+      </div>
+      <div class="post-content">
+        <h3 class="title"><%= link_to post.title, post_path(post.id) %></h3>
+        <div class="post-user">
+          <span><%= post.pc_introduction %></span></br>
+          <%= link_to  user_path(post.user_id) do %>
+            <%= attachment_image_tag post.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
           <% end %>
-      </td>
-      <td><%= link_to post.title, post_path(post.id) %></td>
-      <td><%= post.title %></td>
-           <% post.tag_list.each do |tag| %>
-            <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
+          <span><%= post.user.name %>@<%= post.user.at_name %></span></br>
+          <% if post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(post), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= post.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post), method: :post do %>
+              <i class="far fa-heart" aria-hidden="true"></i>
+              <%= post.favorites.count %>
+            <% end %>
           <% end %>
-   </tr>
-   By<%= post.user.name %>
-   <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
-   <% end %>
+          |
+          <span><i class="fa fa-comment"></i><%= link_to "#{post.post_comments.count}", post_path(post.id) %></span>
+          |
+          <span><i class="fa fa-tags"></i>
+            <% post.tag_list.first(3).each do |tag| %>
+              <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
+            <% end %>
+          </span>|
+          <%= link_to '', "https://twitter.com/share?url=#{request.url}/#{post.id}&text=#{ post.title }/&hashtags=Pclder", class: 'fab fa-twitter fa-lg', data: { show_count: false }, title: 'Twitter', target: '_blank', style: "text-decoration: none;" %>
+          <span>
+            <%= link_to "https://line.me/R/msg/text/?#{request.url}/#{post.id}" do %>
+              <div class="line-it-button" data-lang="ja" data-type="share-b" data-color="default" data-size="small" data-count="false" style="display: none; "></div>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </hr>
+  <% end %>

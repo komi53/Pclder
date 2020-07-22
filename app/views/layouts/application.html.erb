@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -18,10 +18,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <main>
   <div id="wrapper">
+
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -36,32 +36,69 @@
               </div>
               <% end %>
                 <li class="sidebar-brand">
-                      <a href="/">
+                       <a href="/posts">
                           <%= image_tag "logo.png", :size =>'158x56' %>
                       </a>
                       <% if user_signed_in? %>
-                      <li><%= link_to 'Home', root_path %></li>
-                      <li><%= link_to 'Ranking', ranking_posts_path %></li>
-                      <li><%= link_to 'Post', new_post_path %></li>
-                      <li><%= link_to 'Message', rooms_index_path %></li>
-                      <li><%= link_to 'notification', notifications_path %></li>
-                      <li><%= link_to 'Profile', user_path(current_user.id) %></li>
-                      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                        <li><%= link_to 'Home', posts_path %></li>
+                        <li><%= link_to 'Ranking', ranking_posts_path %></li>
+                        <li><%= link_to 'Post', new_post_path %></li>
+                        <li><%= link_to 'Message', rooms_index_path %></li>
+                        <li><%= link_to 'notification', notifications_path %></li>
+                        <li><%= link_to 'Profile', user_path(current_user.id) %></li>
+                        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
                       <% else %>
-                      <li><%= link_to 'Home', root_path %></li>
-                      <li><%= link_to 'Sign in', new_user_session_path %></li>
-                      <li><%= link_to 'Sign up', new_user_registration_path %></li>
-                  </ul>
-                </div>
+                        <li><%= link_to 'Top', root_path %></li>
+                        <li><%= link_to 'Sign in', new_user_session_path %></li>
+                        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+                </li>
               <% end %>
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
-
     </div>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark nav fixed-top responsive-nav">
+    <a href="/posts">
+      <%= image_tag "logo.png", :size =>'140x50' %>
+    </a>
+    <%= search_form_for @q, url: search_posts_path do |f| %>
+      <div class="d-flex justify-content-center">
+        <div class="searchbar">
+          <%= f.search_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, class: "search_input", placeholder: "Search..." %>
+          <button type="submit" class="search_icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    <% end %>
+           <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <% if user_signed_in? %>
+        <hr><li><%= link_to 'Home', posts_path, class: "link" %></li>
+        <hr><li><%= link_to 'Ranking', ranking_posts_path, class: "link" %></li>
+        <hr><li><%= link_to 'Post', new_post_path, class: "link" %></li>
+        <hr><li><%= link_to 'Message', rooms_index_path, class: "link" %></li>
+        <hr><li><%= link_to 'notification', notifications_path, class: "link" %></li>
+        <hr><li><%= link_to 'Profile', user_path(current_user.id), class: "link" %></li>
+        <hr><li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "link" %></li><hr>
+      <% else %>
+        <hr><li><%= link_to 'Top', root_path, class: "link" %></li>
+        <hr><li><%= link_to 'Sign in', new_user_session_path, class: "link" %></li>
+        <hr><li><%= link_to 'Sign up', new_user_registration_path, class: "link" %></li><hr>
+      <% end %>
+    </div>
+  </nav>
 
+<div class="view-all">
     <div class="container">
       <%= yield %>
     </div>
+  </div>
+</main>
+    <footer></footer>
+</div>
   </body>
 </html>

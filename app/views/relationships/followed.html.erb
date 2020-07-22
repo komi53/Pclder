@@ -1,23 +1,37 @@
-<h2>Follower Users</h2>
-<% if @users.count > 0 %>
+<div class="row">
+  <div class="col-md-12">
+    <h2>フォロワー</h2>
+  </div>
+  <% if @users.count > 0 %>
       <% @users.each do |user| %>
-      <tr>
-        <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", :size =>'200x200') %></td>
-        <td><%= user.name %></td>
-        <td>フォロー数：<%= user.follower.count %></td>
-        <td>フォロワー数：<%= user.followed.count %></td>
-        <td>
-          <% if current_user != user %>
-            <% if current_user.following?(user) %>
-              <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete %>
-            <% else %>
-              <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST %>
+        <%= link_to user do %>
+          <div class="col-xs-3">
+            <%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", :size =>'100x100', class: "rounded-circle border border-white") %>
+          </div>
+        <% end %>
+        <div class="col-md-6">
+          <%= link_to user, class: "user-link" do %>
+            <span style="font-size: 28px;"><%= user.name %></span>
+          <% end %>
+        <br>
+          <span><%= user.introduction %></span>
+        </div>
+        <div class="col-md-4">
+          フォロー数：<%= user.follower.count %>
+          フォロワー数：<%= user.followed.count %>
+          <% if user_signed_in? %>
+            <% if current_user != user %>
+              <% if current_user.following?(user) %>
+                <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+              <% else %>
+                <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
+              <% end %>
             <% end %>
           <% end %>
-        </td>
-        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-      </tr>
-    <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+        </div>
+        <hr>
+      <% end %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+</div>
