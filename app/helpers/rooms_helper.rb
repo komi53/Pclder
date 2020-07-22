@@ -30,7 +30,7 @@ module RoomsHelper
   # 相手ユーザー名を取得して表示するメソッド
   def opponent_user(room)
     # 中間テーブルから相手ユーザーのデータを取得
-    entry = room.user_rooms.where.not(user_id: current_user)
+    entry = room.user_rooms.where.not(user_id: current_user, user_id: nil)
     # 相手ユーザーの名前を取得
     name = entry[0].user.name
     # 名前を表示
