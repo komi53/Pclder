@@ -143,17 +143,9 @@
 <div class="row">
   <div class="offset-md-10">
     <% if user_signed_in? %>
-      <% if @post.favorited_by?(current_user) %>
-        <%= link_to post_favorites_path(@post), method: :delete do %>
-          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-          <%= @post.favorites.count %>いいね 
-        <% end %>
-      <% else %>
-        <%= link_to post_favorites_path(@post), method: :post do %>
-          <i class="far fa-heart" aria-hidden="true"></i>
-          <%= @post.favorites.count %>いいね 
-        <% end %>
-      <% end %>
+      <div class="post-favorite" style="display: inline;">
+        <%= render 'favorite', post: @post %>
+      </div>
     <% else %>
       <%= link_to new_user_session_path do %>
         <i class="far fa-heart" aria-hidden="true"></i>
@@ -170,29 +162,12 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <h2 class="comment-count"><%= @post.post_comments.count %>件コメント</h2>
-  <% @post.post_comments.each do |post_comment| %>
-   <div class="col-md-12">
-    <%= link_to user_path(post_comment.user) do %>
-      <%= attachment_image_tag post_comment.user, :profile_image, class: "rounded-circle border border-white", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
-    <% end %>
-    <%= link_to user_path(post_comment.user), class: "user-link" do %>
-          <span><%= post_comment.user.name %>@<%= post_comment.user.at_name %></span>
-    <% end %>
-    <div class="col-md-12">
-     <%= post_comment.comment %>
-    </div>
-    <% if post_comment.user == current_user%>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment),class: "pull-right", method: :delete %>
-    <% end %>
-    <span class="offset-md-10" style="font-size:14px;"><%= post_comment.created_at.strftime('%Y/%m/%d/%H:%M:%S') %></span>
-    </div>
-  <% end %>
+<div class="row post-comment">
+  <%= render 'comment', post_comments: @post.post_comments %>
 </div>
 <div class="row">
   <div class="col-md-12">
-  <%= form_for [@post, @post_comment] do |f| %>
+  <%= form_with model:[@post, @post_comment], data: {remote: true} do |f| %>
       <%= f.text_area :comment, class: "form-control col-md-12", placeholder: "コメントをここに" %>
       <%= f.submit "送信", class: "btn btn-lg btn-base-1 mt-20 pull-right" , style: "color:white;" %>
   <% end %>

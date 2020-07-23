@@ -11,43 +11,15 @@
   <hr>
 <div class="row">
   <% if @users.count > 0 %>
-      <% @users.each do |user| %>
-        <%= link_to user do %>
-          <div class="col-xs-3">
-            <%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", :size =>'100x100', class: "rounded-circle border border-white") %>
-          </div>
-        <% end %>
-        <div class="col-md-5">
-          <%= link_to user, class: "user-link" do %>
-            <span style="font-size: 28px;"><%= user.name %></span>
-          <% end %>
-        <br>
-          <span><%= user.introduction %></span>
-        </div>
-        <div class="col-md-5">
-          フォロー数：<%= user.follower.count %>
-          フォロワー数：<%= user.followed.count %>
-          <% if user_signed_in? %>
-            <% if current_user != user %>
-              <% if current_user.following?(user) %>
-                <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
-              <% else %>
-                <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-        <hr>
-      <% end %>
-    <% end %>
-  </div>
-<% else %>
-  "<%= @content %>"の検索結果ヒットしませんでした。
-  <%= search_form_for @q, url: search_posts_path do |f| %>
-    <%= f.hidden_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, placeholder: "Search...", :value => @content %>
-      <button type="submit" class="btn btn-success">
-        投稿を検索
-      </button>
+    <%= render 'users/index', users: @users %>
   <% end %>
-<% end %>
-
+  <% else %>
+    "<%= @content %>"の検索結果ヒットしませんでした。
+    <%= search_form_for @q, url: search_posts_path do |f| %>
+      <%= f.hidden_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, placeholder: "Search...", :value => @content %>
+        <button type="submit" class="btn btn-success">
+          投稿を検索
+        </button>
+    <% end %>
+  <% end %>
+</div>
