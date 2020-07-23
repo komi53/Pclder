@@ -1,7 +1,7 @@
 <% if @posts %>
 　<span>人気のタグ：</span>
-  <% @popular_tags.each do |ptag| %>
-     <%= link_to ptag, posts_path(tag_name: ptag), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
+  <% @popular_tags.each do |tag| %>
+     <%= link_to tag, posts_path(tag_name: tag.name), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
   <% end %>
 <h3 class="h3"></h3>
  <div class="container">
