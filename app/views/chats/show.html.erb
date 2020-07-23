@@ -1,36 +1,44 @@
 <% @chats_name.first(1).each do |chat| %>
+	<% if chat.user != nil %>
 		<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= link_to "<", rooms_index_path %><%= chat.user.name %></h1>
+	  <% else %>
+		<h1><%= link_to "<", rooms_index_path %>このメンバーは退会しました。</h1>
+	<% end %>
 <% end %>
-		<div class="card-body msg_card_body">
-		   <%= link_to_next_page @chats, '<', class: "next" %>
-		   <%= link_to_prev_page @chats, '>', class: "prev" %>
-			<% @chats.reverse_each do |chat| %>
-		 		<% unless chat.user_id == current_user.id %>
-					<div class="d-flex justify-content-start mb-4">
-						<div class="img_cont_msg">
-							<%= attachment_image_tag chat.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
-						</div>
-						<div class="msg_cotainer">
-							<%= chat.message %>
-							<span class="msg_time"><%= chat.created_at.strftime("%H:%M %p,%b %d") %></span>
-						</div>
-					</div>
-				<% else %>
-					<div class="d-flex justify-content-end mb-4">
-						<div class="msg_cotainer_send">
-							<%= chat.message %>
-							<span class="msg_time_send"><%= chat.created_at.strftime("%H:%M %p,%b %d") %></span>
-						</div>
-						<div class="img_cont_msg">
-							<%= attachment_image_tag chat.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
-						</div>
-					</div>
-				<% end %>
-			<% end %>
-		</div>
+<div class="card-body msg_card_body">
+   <%= link_to_next_page @chats, '<', class: "next" %>
+   <%= link_to_prev_page @chats, '>', class: "prev" %>
+	<% @chats.reverse_each do |chat| %>
+ 		<% unless chat.user_id == current_user.id %>
+			<div class="d-flex justify-content-start mb-4">
+				<div class="img_cont_msg">
+					<%= attachment_image_tag chat.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+				</div>
+				<div class="msg_cotainer">
+					<%= chat.message %>
+					<span class="msg_time"><%= chat.created_at.strftime("%H:%M %p,%b %d") %></span>
+				</div>
+			</div>
+		<% else %>
+			<div class="d-flex justify-content-end mb-4">
+				<div class="msg_cotainer_send">
+					<%= chat.message %>
+					<span class="msg_time_send"><%= chat.created_at.strftime("%H:%M %p,%b %d") %></span>
+				</div>
+				<div class="img_cont_msg">
+					<%= attachment_image_tag chat.user, :profile_image, class: "rounded-circle border border-dark", format: 'jpeg', fallback: "no_image.jpg",:size =>'40x40' %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+<% @chats_name.first(1).each do |chat| %>
+	<% if chat.user != nil %>
 		<div class="card-footer">
 			<%= form_with model: @chat, data: {remote: true} do |f| %>
-				<%= f.text_field :message, class: "form-control type_msg", placeholder: "Type your message..." %>
+				<%= f.text_field :message, class: "form-control type_msg", placeholder: "メッセージを入力してください..." %>
 				<%= f.hidden_field :room_id %>
 			<% end %>
 		</div>
+	<% end %>
+<% end %>

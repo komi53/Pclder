@@ -14,7 +14,7 @@ before_action :authenticate_user!
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
     @chats = @room.chats.page(params[:page]).without_count.per(8).order(created_at: "DESC")
-    @chats_name = @room.chats
+    @chats_name = @room.user_rooms.where.not(user_id: current_user)
     @chat = Chat.new(room_id: @room.id)
   end
   def create
