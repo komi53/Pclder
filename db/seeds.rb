@@ -321,7 +321,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc13.jpg", ?r)
+      post_image: File.open("./app/assets/images/pc22.jpg", ?r)
     },
     {
       user_id: "5",
@@ -338,7 +338,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc14.jpg", ?r)
+      post_image: File.open("./app/assets/images/pc20.jpg", ?r)
     },
     {
       user_id: "8",
