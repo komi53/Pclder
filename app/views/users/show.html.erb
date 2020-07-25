@@ -12,20 +12,9 @@
 </div>
 <div class="row">
   <div class="follow-count">
-    <%= link_to user_follows_path(@user.id), class: "link" do %>
-      フォロー数：<%= @user.follower.count %>
-    <% end %>
-    <%= link_to user_followers_path(@user.id), class: "link" do %>
-      フォロワー数：<%= @user.followed.count %>
-    <% end %>
-    <% if user_signed_in? %>
-      <% if current_user != @user %>
-        <div class="user-follow" style="display: inline;">
+        <div class="user-follow_<%= @user.id %>" style="display: inline;">
           <%= render 'users/follow', user: @user %>
         </div>
-        <%= link_to 'メッセージを送る', chat_path(@user.id), class: "btn btn-outline-primary" %>
-      <% end %>
-    <% end %>
   </div>
 </div>
 <hr>

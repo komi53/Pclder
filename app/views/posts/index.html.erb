@@ -9,11 +9,6 @@
       <%= render 'index', posts: @posts %>
     </div>
   </div>
-  <div class="page-load-status spinner-grow text-muted offset-md-5 col-md-2">
-    <div class="infinite-scroll-request spinner-grow text-muted offset-md-5 col-md-2"></div>
-    <div class="infinite-scroll-last offset-md-5 col-md-2">これ以上読み込めません</div>
-    <div class="infinite-scroll-error offset-md-5 col-md-2">error</div>
-  </div>
 <% elsif @q_posts %>
   <% if @q_posts.present? %>
     "<%= @q.title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont %>"の検索結果
@@ -50,6 +45,5 @@ $('#post').infiniteScroll({
   append: '.post-body',
   history: false,
   prefill: false,
-  status: '.page-load-status',
 });
 </script>

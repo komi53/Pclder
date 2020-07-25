@@ -14,7 +14,7 @@
         <% end %>
         <span><%= post.user.name %>@<%= post.user.at_name %></span></br>
           <% if user_signed_in? %>
-            <div class="post-favorite" style="display: inline;">
+            <div class="post-favorite_<%= post.id %>" style="display: inline;">
               <%= render 'posts/favorite', post: post %>
             </div>
         <% else %>

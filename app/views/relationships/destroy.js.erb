@@ -1,1 +1,2 @@
-$(".post-follow").html("<%= j(render 'users/follow', user: @user ) %>")
+$(".user-follow_<%= @user.id %>").html("<%= j(render 'users/follow', user: @user ) %>")
+
