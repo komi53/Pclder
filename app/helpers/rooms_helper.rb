@@ -45,12 +45,12 @@ module RoomsHelper
     # 中間テーブルから相手ユーザーのデータを取得
     entry = room.user_rooms.where.not(user_id: current_user)
     if entry[0].user != nil
-      # 相手ユーザーの名前を取得
+      # 相手ユーザーのIDを取得
       user_id = entry[0].user.id
       # 名前を表示
-      return "#{user_id}"
+      return "#{chat_path(user_id)}"
     else
-    return tag.p "このメンバーは退会しました。"
+    return "#{rooms_deleted_path}"
     end
   end
 

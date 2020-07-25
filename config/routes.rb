@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'homes/top'
   get 'rooms/index'
+  get 'rooms/deleted' => 'rooms#deleted'
   get 'goods/search' => 'goods#search'
   root to: 'homes#top'
   get 'chat/:id' => 'chats#show', as: 'chat'
