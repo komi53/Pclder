@@ -4,10 +4,15 @@
      <%= link_to tag, posts_path(tag_name: tag.name), class: "badge badge-success p-1 badge-tag",data: {"turbolinks" => false} %>
   <% end %>
 <h3 class="h3"></h3>
- <div class="container">
-    <div class="row align-items-strech">
+ <div class="container" id=post>
+    <div class="row align-items-strech post-body">
       <%= render 'index', posts: @posts %>
     </div>
+  </div>
+  <div class="page-load-status spinner-grow text-muted offset-md-5 col-md-2">
+    <div class="infinite-scroll-request spinner-grow text-muted offset-md-5 col-md-2"></div>
+    <div class="infinite-scroll-last offset-md-5 col-md-2">これ以上読み込めません</div>
+    <div class="infinite-scroll-error offset-md-5 col-md-2">error</div>
   </div>
 <% elsif @q_posts %>
   <% if @q_posts.present? %>
@@ -21,8 +26,8 @@
       <% end %>
     </div>
     <hr>
-     <div class="container">
-      <div class="row align-items-strech">
+     <div class="container" id=post>
+      <div class="row align-items-strech post-body">
         <%= render 'index', posts: @q_posts %>
       </div>
      </div>
@@ -39,3 +44,12 @@
 <% end %>
 
  <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<script>
+$('#post').infiniteScroll({
+  path: '/posts?page={{#}}' ,
+  append: '.post-body',
+  history: false,
+  prefill: false,
+  status: '.page-load-status',
+});
+</script>

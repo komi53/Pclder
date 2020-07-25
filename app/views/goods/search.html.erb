@@ -1,35 +1,12 @@
-
-  <h1>Rakuserach</h1>
+<h1>楽天serach</h1>
 <div class='content'>
   <div id="search-box">
-    <%= form_tag('/goods/search', method: :get,  remote: true) do %>
+    <%= form_tag('/goods/search', method: :get) do %>
         <%= text_field_tag :keyword, "",  id: "good_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
     <% end %>
   </div>
   <h2>検索結果</h2>
   <div id='good_list'>
      <%= render partial: 'good_list' %>
-  </div>
-</div>
-
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <!-- Modal body -->
-        <div class="modal-body">
-          <%= render partial: 'good_list' %>
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
