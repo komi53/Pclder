@@ -21,6 +21,6 @@
 </div>
  <div class="container">
     <div class="row align-items-strech">
-      <%= render 'posts/index', posts: @user.posts %>
+      <%= render 'posts/index', posts: @user.posts.order(created_at: "DESC") %>
     </div>
 </div>

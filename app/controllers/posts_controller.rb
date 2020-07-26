@@ -6,9 +6,9 @@ class PostsController < ApplicationController
 
   def index
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(15)
+      @posts = Post.tagged_with("#{params[:tag_name]}").order(created_at: "DESC").page(params[:page]).per(15)
     else
-      @posts = Post.all.page(params[:page]).per(15)
+      @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(15)
     end
     @popular_tags = ActsAsTaggableOn::Tag.most_used().page(params[:page]).without_count.per(10)
   end
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
 
   def search
   # application controllerで生成した@qを利用して検索する
-    @q_posts = @q.result(distinct: true).page(params[:page]).per(15)
+    @q_posts = @q.result(distinct: true).order(created_at: "DESC").page(params[:page]).per(15)
     render :index
   end
 
