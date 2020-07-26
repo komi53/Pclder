@@ -33,7 +33,6 @@ class PostsController < ApplicationController
           redirect_to posts_path
           flash[:succes] = '投稿に成功しました'
       else
-          @posts = Post.all
           @post = post
           render 'new'
       end

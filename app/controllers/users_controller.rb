@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
   def search
     @content = params["search"]["content"]
-    @users = User.where('name LIKE ?', '%'+@content+'%')
+    @users = User.where('(name || at_name) LIKE ?', '%'+@content+'%')
     render :index
   end
   def follows

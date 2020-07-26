@@ -21,9 +21,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
     <main>
+<% if request.path_info  != root_path %>
   <div id="wrapper">
-
-        <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
               <%= search_form_for @q, url: search_posts_path do |f| %>
@@ -92,12 +91,54 @@
       <% end %>
     </div>
   </nav>
-
-<div class="view-all">
+  <div class="view-all">
     <div class="container">
       <%= yield %>
     </div>
   </div>
+<% else %>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark nav fixed-top responsive-nav">
+    <a href="/posts">
+      <%= image_tag "logo.png", :size =>'140x50' %>
+    </a>
+    <%= search_form_for @q, url: search_posts_path do |f| %>
+      <div class="d-flex justify-content-center">
+        <div class="searchbar">
+          <%= f.search_field :title_or_cpu_name_or_cooler_name_or_motherboard_name_or_memory_name_or_gpu_name_or_storage_name_or_case_name_or_power_supply_name_or_other_or_pc_introduction_or_value_or_tag_list_cont, autofocus: true, class: "search_input", placeholder: "Search..." %>
+          <button type="submit" class="search_icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    <% end %>
+           <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <% if user_signed_in? %>
+        <hr><li><%= link_to 'Home', posts_path, class: "link" %></li>
+        <hr><li><%= link_to 'Ranking', ranking_posts_path, class: "link" %></li>
+        <hr><li><%= link_to 'Post', new_post_path, class: "link" %></li>
+        <hr><li><%= link_to 'Message', rooms_index_path, class: "link" %></li>
+        <hr><li><%= link_to 'notification', notifications_path, class: "link" %></li>
+        <hr><li><%= link_to 'Profile', user_path(current_user.id), class: "link" %></li>
+        <hr><li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "link" %></li><hr>
+      <% else %>
+        <hr><li><%= link_to 'Top', root_path, class: "link" %></li>
+        <hr><li><%= link_to 'Sign in', new_user_session_path, class: "link" %></li>
+        <hr><li><%= link_to 'Sign up', new_user_registration_path, class: "link" %></li><hr>
+      <% end %>
+    </div>
+  </nav>
+<%= yield %>
+    <footer class="fixed-bottom">
+        <span style="float: right;">Copyright © 2020 Pclder All Rights Reserved.</span>
+    </footer>
+<% end %>
+
+
 </main>
     <footer></footer>
 </div>
