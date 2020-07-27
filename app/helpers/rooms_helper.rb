@@ -8,7 +8,7 @@ module RoomsHelper
     # メッセージの有無を判定
     if chat.present?
       # メッセージがあれば内容を表示
-      tag.span "#{chat.message}", class: "dm_list__content__link__box__message"
+      tag.span "#{chat.message.truncate(20)}", class: "dm_list__content__link__box__message"
     else
       # メッセージがなければ[ まだメッセージはありません ]を表示
       tag.span "[ まだメッセージはありません ]", class: "dm_list__content__link__box__message"
