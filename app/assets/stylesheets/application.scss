@@ -221,14 +221,14 @@
         border-radius: 15px;
         padding: 5px;
 
-        &:hover > .search_input{
+        .search_input{
         padding: 0 5px;
-        width: 200px;
+        width: 150px;
         caret-color:red;
         transition: width 0.2s linear;
         }
 
-        &:hover > .search_icon{
+        .search_icon{
         background: #fff;
         color: #e74c3c;
         }

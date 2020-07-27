@@ -92,7 +92,17 @@ background-color: pink;
 	margin-left:5px;
 
 }
-.show-image {
-    width: auto;
-    height: 400px;
+/* スマホ　767px以下 */
+@media only screen and (max-width: 767px){
+  .show-image{
+    width: 100%;
+    height: auto;
+  }
+}
+/* pc　768px以上 */
+@media only screen and (min-width: 768px), print {
+  .show-image{
+    width: 1000px;
+    height: auto;
+  }
 }

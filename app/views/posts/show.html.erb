@@ -11,10 +11,10 @@
         <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' } %>
       <% end %>
     </div>
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8">
     <%= attachment_image_tag @post, :post_image, format: 'jpeg', fallback: "no_image.jpg", class: "show-image" %>
     </div>
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-1">
       <%= @post.title %>
   </div>
   <div id='good_list'>
