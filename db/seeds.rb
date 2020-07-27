@@ -9,7 +9,7 @@ User.create!(
 name:"原口" ,
 at_name: "as1111",
 introduction: "こんにちは、",
-profile_image: File.open("./app/assets/images/user1.jpg", ?r),
+profile_image: File.open("/assets/user1.jpg", ?r),
 password: "123456",
 email: "1@1"
 )
@@ -17,7 +17,7 @@ User.create!(
 name:"オーラス" ,
 at_name: "gigabyte",
 introduction: "こんばんは",
-profile_image: File.open("./app/assets/images/user2.jpg", ?r),
+profile_image: File.open("/assets/user2.jpg", ?r),
 password: "123456",
 email: "2@2"
 )
@@ -25,7 +25,7 @@ User.create!(
 name:"エイスース" ,
 at_name: "ROG",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user3.jpg", ?r),
+profile_image: File.open("/assets/user3.jpg", ?r),
 password: "123456",
 email: "3@3"
 )
@@ -33,7 +33,7 @@ User.create!(
 name:"エムエスアイ" ,
 at_name: "msi",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user4.jpg", ?r),
+profile_image: File.open("/assets/user4.jpg", ?r),
 password: "123456",
 email: "4@4"
 )
@@ -41,7 +41,7 @@ User.create!(
 name:"MSI" ,
 at_name: "miss1010",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user5.jpg", ?r),
+profile_image: File.open("/assets/user5.jpg", ?r),
 password: "123456",
 email: "5@5"
 )
@@ -49,7 +49,7 @@ User.create!(
 name:"清水" ,
 at_name: "ocfire",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user6.jpg", ?r),
+profile_image: File.open("/assets/user6.jpg", ?r),
 password: "123456",
 email: "6@6"
 )
@@ -57,7 +57,7 @@ User.create!(
 name:"ギャラ兄さん" ,
 at_name: "HOF",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user7.jpg", ?r),
+profile_image: File.open("/assets/user7.jpg", ?r),
 password: "123456",
 email: "7@7"
 )
@@ -65,7 +65,7 @@ User.create!(
 name:"アップル信者" ,
 at_name: "imac",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user8.jpg", ?r),
+profile_image: File.open("/assets/user8.jpg", ?r),
 password: "123456",
 email: "8@8"
 )
@@ -73,7 +73,7 @@ User.create!(
 name:"ツクモ" ,
 at_name: "tsukumo",
 introduction: "おはよう",
-profile_image: File.open("./app/assets/images/user9.jpg", ?r),
+profile_image: File.open("/assets/user9.jpg", ?r),
 password: "123456",
 email: "9@9"
 )
@@ -95,7 +95,7 @@ Post.create!(
       					初心者です！初投稿となります！",
       value: "170000",
       tag_list: "Xeon,GIGABYTE,ASRock",
-      post_image: File.open("./app/assets/images/pc1.jpg", ?r)
+      post_image: File.open("/assets/pc1.jpg", ?r)
     },
     {
       user_id: "1",
@@ -113,7 +113,7 @@ Post.create!(
       					メモリやストレージ関係は前回のを流用",
       value: "250000",
       tag_list: "corei9,ASUS,InWin",
-      post_image: File.open("./app/assets/images/pc2.jpg", ?r)
+      post_image: File.open("/assets/pc2.jpg", ?r)
     },
        {
       user_id: "1",
@@ -131,7 +131,7 @@ Post.create!(
       					ryzen9で作ってみました！",
       value: "240000",
       tag_list: "AMD,Ryzen9,NZXT",
-      post_image: File.open("./app/assets/images/pc3.jpg", ?r)
+      post_image: File.open("/assets/pc3.jpg", ?r)
     },
     {
       user_id: "2",
@@ -149,7 +149,7 @@ Post.create!(
       					ryzen5 3600です。",
       value: "150000",
       tag_list: "AMD,NZXT,ゲーミングPC",
-      post_image: File.open("./app/assets/images/pc4.jpg", ?r)
+      post_image: File.open("/assets/pc4.jpg", ?r)
     },
     {
       user_id: "2",
@@ -167,7 +167,7 @@ Post.create!(
       					サブ機として使ってます。",
       value: "100000",
       tag_list: "AMD,NZXT,ゲーミングPC",
-      post_image: File.open("./app/assets/images/pc5.jpg", ?r)
+      post_image: File.open("/assets/pc5.jpg", ?r)
     },
     {
       user_id: "3",
@@ -184,7 +184,7 @@ Post.create!(
       pc_introduction: "Zen2に換装予定です！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/my-pc.jpg", ?r)
+      post_image: File.open("/assets/my-pc.jpg", ?r)
     },
     {
       user_id: "3",
@@ -201,7 +201,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc6.jpg", ?r)
+      post_image: File.open("/assets/pc6.jpg", ?r)
     },
     {
 
@@ -219,7 +219,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "250000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc7.jpg", ?r)
+      post_image: File.open("/assets/pc7.jpg", ?r)
     },
     {
       user_id: "1",
@@ -236,7 +236,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "300000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc8.jpg", ?r)
+      post_image: File.open("/assets/pc8.jpg", ?r)
     },
     {
       user_id: "2",
@@ -253,7 +253,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "600000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc9.jpg", ?r)
+      post_image: File.open("/assets/pc9.jpg", ?r)
     },
     {
       user_id: "6",
@@ -270,7 +270,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc10.jpg", ?r)
+      post_image: File.open("/assets/pc10.jpg", ?r)
     },
     {
       user_id: "9",
@@ -287,7 +287,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc11.jpg", ?r)
+      post_image: File.open("/assets/pc11.jpg", ?r)
     },
     {
       user_id: "3",
@@ -304,7 +304,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc12.jpg", ?r)
+      post_image: File.open("/assets/pc12.jpg", ?r)
     },
     {
       user_id: "7",
@@ -321,7 +321,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc22.jpg", ?r)
+      post_image: File.open("/assets/pc22.jpg", ?r)
     },
     {
       user_id: "5",
@@ -338,7 +338,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc20.jpg", ?r)
+      post_image: File.open("/assets/pc20.jpg", ?r)
     },
     {
       user_id: "8",
@@ -355,7 +355,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc15.jpg", ?r)
+      post_image: File.open("/assets/pc15.jpg", ?r)
     },
     {
       user_id: "7",
@@ -372,7 +372,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc16.jpg", ?r)
+      post_image: File.open("/assets/pc16.jpg", ?r)
     },
     {
       user_id: "6",
@@ -389,7 +389,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc17.jpg", ?r)
+      post_image: File.open("/assets/pc17.jpg", ?r)
     },
     {
       user_id: "5",
@@ -406,7 +406,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc18.jpg", ?r)
+      post_image: File.open("/assets/pc18.jpg", ?r)
     },
     {
       user_id: "9",
@@ -423,7 +423,7 @@ Post.create!(
       pc_introduction: "*テストなので写真と金額は実際のものと異なります！",
       value: "150000",
       tag_list: "AMD,ゲーミングPC,AORUS,GIGABYTE",
-      post_image: File.open("./app/assets/images/pc19.jpg", ?r)
+      post_image: File.open("/assets/pc19.jpg", ?r)
     },
       ]
 )
