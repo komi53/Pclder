@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'homes/top'
+  get 'homes/about'
   get 'rooms/index'
   get 'rooms/deleted' => 'rooms#deleted'
   get 'goods/search' => 'goods#search'

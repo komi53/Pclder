@@ -31,7 +31,7 @@ email: "3@3"
 )
 User.create!(
 name:"エムエスアイ" ,
-at_name: "ROG",
+at_name: "msi",
 introduction: "おはよう",
 profile_image: File.open("./app/assets/images/user4.jpg", ?r),
 password: "123456",
@@ -39,7 +39,7 @@ email: "4@4"
 )
 User.create!(
 name:"MSI" ,
-at_name: "ROG",
+at_name: "miss1010",
 introduction: "おはよう",
 profile_image: File.open("./app/assets/images/user5.jpg", ?r),
 password: "123456",

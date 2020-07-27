@@ -49,6 +49,8 @@
                         <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
                       <% else %>
                         <li><%= link_to 'Top', root_path %></li>
+                        <li><%= link_to 'About', homes_about_path %></li>
+                        <li><%= link_to 'Visit', posts_path %></li>
                         <li><%= link_to 'Sign in', new_user_session_path %></li>
                         <li><%= link_to 'Sign up', new_user_registration_path %></li>
                 </li>
@@ -86,6 +88,8 @@
         <hr><li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "link" %></li><hr>
       <% else %>
         <hr><li><%= link_to 'Top', root_path, class: "link" %></li>
+        <hr><li><%= link_to 'About', homes_about_path, class: "link" %></li>
+        <hr><li><%= link_to 'Visit', posts_path, class: "link" %></li>
         <hr><li><%= link_to 'Sign in', new_user_session_path, class: "link" %></li>
         <hr><li><%= link_to 'Sign up', new_user_registration_path, class: "link" %></li><hr>
       <% end %>
@@ -127,6 +131,8 @@
         <hr><li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "link" %></li><hr>
       <% else %>
         <hr><li><%= link_to 'Top', root_path, class: "link" %></li>
+        <hr><li><%= link_to 'About', homes_about_path, class: "link" %></li>
+        <hr><li><%= link_to 'Visit', posts_path, class: "link" %></li>
         <hr><li><%= link_to 'Sign in', new_user_session_path, class: "link" %></li>
         <hr><li><%= link_to 'Sign up', new_user_registration_path, class: "link" %></li><hr>
       <% end %>
@@ -134,7 +140,10 @@
   </nav>
 <%= yield %>
     <footer class="fixed-bottom">
-        <span style="float: right;">Copyright © 2020 Pclder All Rights Reserved.</span>
+        <span style="float: right;">
+          <%= link_to 'Pclderについて', homes_about_path, class: "link" %>
+          Copyright © 2020 Pclder All Rights Reserved.
+        </span>
     </footer>
 <% end %>
 

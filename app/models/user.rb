@@ -3,8 +3,12 @@ class User < ApplicationRecord
 	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 	acts_as_paranoid
 
+	validates :name, presence: true
+	validates :at_name, presence: true
+	validates :at_name, uniqueness: {conditions: ->{with_deleted}}
 	validates :email, presence: true
   	validates :email, uniqueness: {conditions: ->{with_deleted}}
+  	validates :introduction,    length: { maximum: 200 }
   	
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :follows, :followers, :confirm, :leave]
   def index
   end
   def show
@@ -12,8 +13,11 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user.update(user_params)
-	  redirect_to user_path(@user)
+  	if @user.update(user_params)
+	   redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
   def search
     @content = params["search"]["content"]

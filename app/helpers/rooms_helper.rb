@@ -23,7 +23,7 @@ module RoomsHelper
     # メッセージの有無を判定
     if chat.present?
       # メッセージがあれば内容を表示
-      tag.span "#{chat.created_at.strftime("%H:%M %p,%b %d")}", class: "dm_list__content__link__box__time"
+      tag.span "#{chat.created_at.strftime("%H:%M,%b %d")}", class: "dm_list__content__link__box__time"
     end
   end
 
