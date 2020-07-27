@@ -94,7 +94,19 @@ background-color: pink;
 }
 /* スマホ　767px以下 */
 @media only screen and (max-width: 767px){
+    table{
+      width: 100%;
+    }
+    table th,
+    table td{
+      display: block;
+    }
+
   .show-image{
+    width: 100%;
+    height: auto;
+  }
+  .show-table{
     width: 100%;
     height: auto;
   }
@@ -102,6 +114,10 @@ background-color: pink;
 /* pc　768px以上 */
 @media only screen and (min-width: 768px), print {
   .show-image{
+    width: 1000px;
+    height: auto;
+  }
+  .show-table{
     width: 1000px;
     height: auto;
   }
