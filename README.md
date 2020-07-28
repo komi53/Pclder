@@ -1,6 +1,8 @@
 # <Pclder>
 (pc builderの造語)
 
+![デモ画面](images/demo.png "demo")
+
 ## サイト概要
 自作PC投稿アプリ
 近年、esportsへの注目が集まっておりその延長線上でPCへの注目が集まっております。
@@ -33,5 +35,24 @@ youtubeで探すかTwitterやその他アプリで探しますがたくさん遡
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/12DRvCpDQz53_e5PGuN9_eYIGlroUXI_voDWUBVEXbuA/edit#gid=0>
+
+### 環境一覧
+・フレームワーク
+	Ruby on Rails 5.2.4.3
+
+・使用言語
+	Ruby 2.5.7
+
+・JavaScriptライブラリ
+	jQuery 3.5.1
+
+・Webサーバー
+	Nginx 1.16.1
+
+・UIフレームワーク
+	Bootstrap 4.5.0
+
+・フォント
+	Font Awesome 4.1.0
 
 
