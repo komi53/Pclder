@@ -7,21 +7,22 @@
 		<% end %>
 	</span>
 	<% case notification.action %>
-	<% when 'follow' then %>
-	あなたをフォローしました
+		<% when 'follow' then %>
+			あなたをフォローしました
 		<% when 'like' %>
-		<%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+			<%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
 		にいいねしました
 		<% when 'comment' %>
-		<% if notification.post.user_id == visited.id %>
-		<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-		<% else %>
-			<%= link_to post_path(notification.post) do %>
-				<% notification.post.user.name %>さんの投稿にコメントしました
+			<% if notification.post.user_id == visited.id %>
+				<%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+				にコメントしました
+				<%= PostComment.find_by(id: notification.post_comment_id)&.comment %>
+			<% else %>
+				<%= link_to post_path(notification.post) do %>
+					<% notification.post.user.name %>さんの投稿にコメントしました
 			<% end %>
-			<% end %>
+		<% end %>
 	<% end %>
-	<%= PostComment.find_by(id: notification.post_comment_id)&.comment %>
 	<%= time_ago_in_words(notification.created_at).upcase %>前
 </div>
 <hr> 
